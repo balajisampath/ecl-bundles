@@ -5,8 +5,8 @@ IMPORT STD;
 Simulating OS Folder like Manipulations
 */
   EXPORT Bundle := MODULE(Std.BundleBase)
-    EXPORT Name       	:= 'DirOp';
-    EXPORT Description  := 'Directory Manipulations';
+    EXPORT Name       	:= 'FolderOp';
+    EXPORT Description  := 'Folder Manipulations';
     EXPORT Authors      := ['balajisampath'];
     EXPORT License      := 'http://www.apache.org/licenses/LICENSE-2.0';
     EXPORT Copyright    := 'Use, Improve, Extend, Distribute';
