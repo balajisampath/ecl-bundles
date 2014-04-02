@@ -1,8 +1,8 @@
-EXPORT DirOp := MODULE
+EXPORT FolderOp := MODULE
 
 IMPORT STD;
 /*
-Simulating OS like Directory Manipulations
+Simulating OS Folder like Manipulations
 */
   EXPORT Bundle := MODULE(Std.BundleBase)
     EXPORT Name       	:= 'DirOp';

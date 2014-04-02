@@ -1,7 +1,7 @@
-DirOp
+FolderOp
 ===========
 
-This bundle is built with the aim of providing a Operating System Directory like manipulations on THOR files
+This bundle is built with the aim of providing a Operating System Folder like manipulations on THOR files/Folders
 
 The following are the functions that are provided
 
