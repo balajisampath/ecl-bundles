@@ -18,7 +18,7 @@ The following are the functions that are provided
 	- Most frequently occurring value
 	- Most frequently occurring value count
 
-E.g. Usage : GetColStatistics(Dataset1);
+E.g. Usage : Profiler.GetColStatistics(Dataset1);
 
 *** Since the function is a macro the results cannot be consumed directly by other programs.
  
