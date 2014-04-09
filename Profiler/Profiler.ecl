@@ -36,7 +36,7 @@ EXPORT GetColStatistics(ds) := MACRO
 																	#TEXT(ds)+%'{@label}'%+'max := (STRING) MAX('+ #TEXT(ds)+','+ %'{@label}'%+');'+
 																	#TEXT(ds)+%'{@label}'%+'minlen := (STRING) 0;'+ 
 																	#TEXT(ds)+%'{@label}'%+'maxlen := (STRING) 0;'+
-																	#TEXT(ds)+%'{@label}'%+'uniquecnt := (STRING) COUNT(DEDUP('+ #TEXT(ds)+','+%'{@label}'%+'));'+
+																	#TEXT(ds)+%'{@label}'%+'uniquecnt := (STRING) COUNT(DEDUP(SORT('+ #TEXT(ds)+','+%'{@label}'%+'),'+ %'{@label}'%+'));'+
 																	#TEXT(ds)+%'{@label}'%+'emptycnt := (STRING) COUNT('+ #TEXT(ds)+'('+%'{@label}'%+' = 0)); '+
 																	#TEXT(ds)+%'{@label}'%+'emptypct := COUNT('+ #TEXT(ds)+'('+%'{@label}'%+' = 0))/COUNT('+ #TEXT(ds)+') * 100; '+
 																	#TEXT(ds)+%'{@label}'%+'MFOV := SORT(TABLE('+ #TEXT(ds)+',{' +%'{@label}'%+ '; Cnt := COUNT(GROUP); },' +%'{@label}'%+ '),Cnt)[1].'+%'{@label}'%+ ';'+
@@ -49,9 +49,9 @@ EXPORT GetColStatistics(ds) := MACRO
 															#TEXT(ds)+%'columntype'%+' := \''+ %'{@type}'%+'\';'+
 															#TEXT(ds)+%'{@label}'%+'min :=  MIN('+ #TEXT(ds)+','+%'{@label}'%+');'+
 															#TEXT(ds)+%'{@label}'%+'max :=  MAX('+ #TEXT(ds)+','+%'{@label}'%+');'+
-															#TEXT(ds)+%'{@label}'%+'minlen := MIN('+ #TEXT(ds)+',LENGTH('+%'{@label}'%+'));'+
-															#TEXT(ds)+%'{@label}'%+'maxlen := MAX('+ #TEXT(ds)+',LENGTH('+%'{@label}'%+'));'+
-															#TEXT(ds)+%'{@label}'%+'uniquecnt := COUNT(DEDUP('+ #TEXT(ds)+','+%'{@label}'%+'));'+
+															#TEXT(ds)+%'{@label}'%+'minlen := MIN('+ #TEXT(ds)+',LENGTH(TRIM('+%'{@label}'%+')));'+
+															#TEXT(ds)+%'{@label}'%+'maxlen := MAX('+ #TEXT(ds)+',LENGTH(TRIM('+%'{@label}'%+')));'+
+															#TEXT(ds)+%'{@label}'%+'uniquecnt := COUNT(DEDUP(SORT('+ #TEXT(ds)+','+%'{@label}'%+'),'+ %'{@label}'%+'));'+
 															#TEXT(ds)+%'{@label}'%+'emptycnt := COUNT('+ #TEXT(ds)+'('+%'{@label}'%+' = \'\' )); '+
 															#TEXT(ds)+%'{@label}'%+'emptypct := COUNT('+ #TEXT(ds)+'('+%'{@label}'%+' = \'\'))/COUNT('+ #TEXT(ds)+') * 100; '+
 															#TEXT(ds)+%'{@label}'%+'MFOV := SORT(TABLE('+ #TEXT(ds)+',{' +%'{@label}'%+ '; Cnt := COUNT(GROUP); },' +%'{@label}'%+ '),Cnt)[1].'+%'{@label}'%+ ';'+
@@ -63,7 +63,7 @@ EXPORT GetColStatistics(ds) := MACRO
  #END;
  
  #APPEND(DynamicECLCode,%'ColResult'%[1..LENGTH(%'ColResult'%)-1]);
-  //OUTPUT(%'DynamicECLCode'%);
+
   %DynamicECLCode%;
 ENDMACRO; 
 
