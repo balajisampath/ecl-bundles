@@ -39,16 +39,17 @@ Dir := dirnamewithpath;//IF (dirnamewithpath[1..1] <> '~' , '~'+ dirnamewithpath
 SFDS := STD.File.LogicalFileList(Dir + '*',FALSE,TRUE);
 NFDS := STD.File.LogicalFileList()(REGEXFIND(Dir,name));
 
-SFDS;
-NFDS;
+Cnt := COUNT(SFDS) + COUNT(NFDS) : INDEPENDENT;
 
-SEQUENTIAL(
+SEQUENTIAL(OUTPUT('Count of files deleted := ' + (STRING) Cnt),
 	STD.File.StartSuperFileTransaction(),
 	NOTHOR(APPLY (SFDS(rowcount >0),STD.File.ClearSuperFile('~' + name))),
 	STD.File.FinishSuperFileTransaction(),
 	NOTHOR(APPLY (SFDS,STD.File.DeleteLogicalFile('~' +name))),
 	NOTHOR(APPLY (NFDS,STD.File.DeleteLogicalFile('~' +name)))
 );
+
+#WORKUNIT('name','Removing files from' + dirnamewithpath);
 
 RETURN 1;
 
